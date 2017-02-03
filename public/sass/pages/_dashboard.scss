@@ -1,0 +1,111 @@
+.range-container {
+  width: 100%;
+}
+
+.border-bottom-time {
+  border-bottom: 1px #3c3c3c solid
+}
+
+.row-time:before, .row-time:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.range-time {
+  width: 100% /($number-of-hour + 2);
+  float: left;
+}
+
+.row-time {
+  .border-time {
+    border-left: 1px #000000 solid;
+    border-bottom: 1px #000000 solid;
+  }
+  .border-time:last-child {
+    border-right: 1px #000000 solid;
+  }
+}
+
+
+.button-time {
+
+  width: 100% /($number-of-hour + 2);
+  float: left;
+  border-bottom: 1px #000000 solid;
+  button {
+    min-width: 40px;
+  }
+}
+
+.button-time-next {
+  border-left: 1px #000000 solid;
+}
+
+.min-height-range-time {
+  .range-time, .button-time {
+    min-height: 26px;
+  }
+}
+
+.center-text-hour {
+  transform: translate(-3%, -0%);
+}
+
+.row-job {
+  border: 1px #000000 solid;
+  height: 80px;
+  padding: 10px 0;
+}
+
+.row-job:before, .row-job:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.job-cell {
+  float: left;
+  background-color: #00b3ee;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 100%;
+}
+
+.driver-text {
+  float: left;
+  width: 100% /($number-of-hour + 2);
+  line-height: 60px;
+  padding-left: 10px;
+  span {
+    vertical-align: middle;
+  }
+}
+
+.today-job {
+  background-color: white;
+  margin: 10px 0px 0px;
+  border: 1px solid #ddd;
+}
+
+[ng-drag]{
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: move;
+}
+
+[ng-drop].drag-enter{
+  border:solid 5px red;
+}
+
+[ng-drag].drag-over{
+  border:solid 1px #0b93d5;
+}
+[ng-drag].dragging{
+  opacity: 0.5;
+}
+
+.angular-google-map-container { height: 400px; }

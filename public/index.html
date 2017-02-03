@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--build:css css/styles.min.css-->
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="../bower_components/components-font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="../bower_components/angular-toastr/dist/angular-toastr.css" rel="stylesheet" type="text/css">
+    <link href="./css/app.css" rel="stylesheet" type="text/css">
+    <!--endbuild-->
+</head>
+<body ng-app="main.module">
+<header-page></header-page>
+<div class="container">
+    <div ng-view></div>
+</div>
+</body>
+
+<!--build:js js/lib.min.js -->
+<script src="http://maps.google.com/maps/api/js?libraries=placeses,visualization,drawing,geometry,places&key=AIzaSyACK-A7YHo0jyMzEQQHarZw8uMikeQ379k"></script>
+<script src="../bower_components/angular/angular.js"></script>
+<script src="../bower_components/angular-route/angular-route.js"></script>
+<script src="../bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="../bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+<script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="../bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
+<script src="../bower_components/ngDraggable/ngDraggable.js"></script>
+<!--<script src="../bower_components/lodash/dist/lodash.js"></script>-->
+<!--<script src="../bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>-->
+<!--<script src="../bower_components/angular-google-maps/dist/angular-google-maps.js?key=AIzaSyACK-A7YHo0jyMzEQQHarZw8uMikeQ379k"></script>-->
+<!--<script src="../bower_components/angular-google-maps/dist/angular-google-maps.js"></script>-->
+<script src="../bower_components/ngmap/build/scripts/ng-map.js"></script>
+<!-- endbuild -->
+
+<!--build:js js/app.config.js -->
+<script src="app/app.config.js"></script>
+<!-- endbuild -->
+
+<!--build:js js/app.min.js -->
+<script src="app/app.js"></script>
+<script src="app/constant.js"></script>
+
+<script src="app/views/dashboard/dashboard.module.js"></script>
+
+<script src="app/components/headerPage/headerPage.js"></script>
+<script src="app/components/dashboard/timeControl/timeControl.js"></script>
+<script src="app/components/dashboard/driverChartTime/driverChartTime.js"></script>
+<script src="app/components/dashboard/jobOnMap/jobOnMap.js"></script>
+
+<script src="app/services/utilityService.js"></script>
+
+<!-- endbuild -->
+</html>

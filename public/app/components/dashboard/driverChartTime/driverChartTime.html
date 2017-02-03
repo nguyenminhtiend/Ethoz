@@ -1,0 +1,4 @@
+<div class="row-job">
+    <div class="driver-text"><span>Driver A</span></div>
+    <div class="job-cell" ng-repeat="job in vm.jobs" ng-style="job.style" ng-if="job.isDisplay" title="{{job.name}}" ng-drop="true" ng-drop-success="vm.onDropComplete($data,$event)">{{job.name}}</div>
+</div>

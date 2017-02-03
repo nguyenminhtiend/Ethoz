@@ -1,0 +1,11 @@
+<div class="range-container">
+    <div class="row-time">
+        <div class="range-time">&nbsp</div>
+        <div ng-repeat="range in vm.textHours" class="range-time center-text-hour"><span>{{range}}</span></div>
+    </div>
+    <div class="row-time min-height-range-time">
+        <div class="button-time text-left"><button class="btn btn-primary btn-xs" ng-click="vm.back()" ng-disabled="vm.startTime === 0"><i class="fa fa-chevron-left"></i></button></div>
+        <div ng-repeat="range in vm.ranges" class="border-time range-time">&nbsp</div>
+        <div class="button-time button-time-next text-right"><button class="btn btn-primary btn-xs" ng-click="vm.next()" ng-disabled="vm.startTime === (24 - vm.sizeHour)"><i class="fa fa-chevron-right"></i></button></div>
+    </div>
+</div>

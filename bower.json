@@ -1,0 +1,29 @@
+{
+  "name": "my-branch",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "2359Media <nguyenminhtiend@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.1",
+    "bootstrap": "^3.3.7",
+    "components-font-awesome": "^4.7.0",
+    "angular-bootstrap": "^2.4.0",
+    "angular-route": "^1.6.1",
+    "angular-cookies": "^1.6.1",
+    "angular-toastr": "^2.1.1",
+    "ngDraggable": "^0.1.11",
+    "angular-google-maps": "^2.4.1",
+    "ngmap": "^1.17.8"
+  }
+}
