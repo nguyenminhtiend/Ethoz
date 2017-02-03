@@ -1,31 +1,10 @@
-<!--<ui-gmap-google-map ng-if="vm.map" center='vm.map.center' zoom='vm.map.zoom'>-->
-<!--<ui-gmap-markers models="vm.markers" coords="'self'" icon="'icon'">-->
-<!--<ui-gmap-windows show="show">-->
-<!--<div>{{vm.currentMarker.title}}</div>-->
-<!--</ui-gmap-windows>-->
-<!--</ui-gmap-markers>-->
-<!--</ui-gmap-google-map>-->
-
-<ng-map zoom="11" center="[40.74, -74.18]">
-    <marker position="Toronto Canada"
-            title="You are here"
-            animation="Animation.BOUNCE"
-            centered="true"></marker>
+<ng-map zoom="14" center="{{'Singpapore'}}" style="height: 600px">
+    <marker id='{{job.id}}' position="{{job.address}}" ng-repeat="job in vm.jobs"
+            on-click="vm.showDetail(job)"></marker>
+    <info-window id="job-info">
+        <div ng-non-bindable="">
+            address: {{vm.currentJob.address}}
+            title: {{vm.currentJob.title}}
+        </div>
+    </info-window>
 </ng-map>
-
-<!--<ng-map zoom="13" center="20 Ubi Avenue 4, Singapore" style="height:600px"-->
-        <!--on-center-changed="centerCustomMarker()">-->
-    <!--&lt;!&ndash;<marker position="10 pennsylvania ave, washington DC" on-click="vm.showCustomMarker()"></marker>&ndash;&gt;-->
-    <!--&lt;!&ndash;<marker position="2600 pennsylvania ave, washington DC" on-click="vm.showCustomMarker()"></marker>&ndash;&gt;-->
-    <!--&lt;!&ndash;<custom-marker id="foo" position="10 pennsylvania ave, washington DC" on-click="vm.closeCustomMarker()">&ndash;&gt;-->
-        <!--&lt;!&ndash;<div>&ndash;&gt;-->
-            <!--&lt;!&ndash;<img width="64" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Donald_Trump_August_19%2C_2015_%28cropped%29.jpg/220px-Donald_Trump_August_19%2C_2015_%28cropped%29.jpg" align="left" /> Hi, How Are You? <br/>&ndash;&gt;-->
-            <!--&lt;!&ndash;My Name is Trump, and people call me as Mr. President.<br/>&ndash;&gt;-->
-            <!--&lt;!&ndash;We live in this house.<br/>&ndash;&gt;-->
-            <!--&lt;!&ndash;<br/>&ndash;&gt;-->
-            <!--&lt;!&ndash;<img width="300" src="http://cdn.cstatic.net/images/gridfs/53b42fd3f92ea17d970280b4/Screen%20Shot%202014-07-02%20at%2012.07.54%20PM.png" />&ndash;&gt;-->
-            <!--&lt;!&ndash;<br/>&ndash;&gt;-->
-            <!--&lt;!&ndash;If you want to visit us, please click <a href="https://www.whitehouse.gov">here</a>&ndash;&gt;-->
-        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-    <!--&lt;!&ndash;</custom-marker>&ndash;&gt;-->
-<!--</ng-map>-->
