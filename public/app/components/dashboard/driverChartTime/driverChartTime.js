@@ -13,8 +13,8 @@
 
         });
 
-    DriverChartTimeController.$inject = ['$scope', 'utilityService'];
-    function DriverChartTimeController($scope, utilityService) {
+    DriverChartTimeController.$inject = ['$scope', 'timeService'];
+    function DriverChartTimeController($scope, timeService) {
         var vm = this;
         vm.onDropComplete = function (data, event) {
             alert('Drop done: ' + data);
@@ -47,7 +47,7 @@
         }
 
         function convertJobToRender() {
-            vm.jobs = utilityService.sortByStartTime(vm.jobs);
+            vm.jobs = timeService.sortByStartTime(vm.jobs);
 
             var currentPosition = vm.startTime.toString();
             for(var i = 0; i < vm.jobs.length; i++) {
@@ -62,8 +62,8 @@
         }
 
         function getPercentageFromDistance(start, end) {
-            var startTime = utilityService.getTimeObject(start);
-            var endTime = utilityService.getTimeObject(end);
+            var startTime = timeService.getTimeObject(start);
+            var endTime = timeService.getTimeObject(end);
             var rangeMinute = getTotalMinute(endTime) - getTotalMinute(startTime);
             return (12.5 * rangeMinute) / 60;
         }

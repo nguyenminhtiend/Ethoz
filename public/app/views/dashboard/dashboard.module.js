@@ -25,7 +25,7 @@
             alert('Drag done: ' + data);
         };
 
-        vm.startTime = 8;
+        vm.startTime = 10;
         vm.sizeHour = 6;
         vm.options = {
             minDate: new Date(),

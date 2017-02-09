@@ -1,7 +1,13 @@
 <div class="range-container">
-    <div class="row-time">
+    <div class="row-time" style="position: relative">
         <div class="range-time">&nbsp</div>
         <div ng-repeat="range in vm.textHours" class="range-time center-text-hour"><span>{{range}}</span></div>
+        <div style="position: absolute; width: 10%; border:2px solid orange; left: 50%">
+            <div style="text-align: center"><label style="color: orange">4:40 PM</label></div>
+        </div>
+        <div style="position: absolute; width: 10%; left: 50%; top: 28px">
+            <div style="width: 50%; border-right:2px solid orange; height: 18px"></div>
+        </div>
     </div>
     <div class="row-time min-height-range-time">
         <div class="button-time text-left"><button class="btn btn-primary btn-xs" ng-click="vm.back()" ng-disabled="vm.startTime === 0"><i class="fa fa-chevron-left"></i></button></div>
