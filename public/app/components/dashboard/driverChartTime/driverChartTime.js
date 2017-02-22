@@ -16,6 +16,11 @@
     DriverChartTimeController.$inject = ['$scope', 'timeService'];
     function DriverChartTimeController($scope, timeService) {
         var vm = this;
+        vm.status = {
+            completed: 'completed',
+            pending: 'pending',
+            notstart: 'notstart'
+        };
         vm.onDropComplete = function (data, event) {
             alert('Drop done: ' + data);
         };
@@ -32,17 +37,20 @@
                 {
                     name: 'Replacement',
                     startTime: '9',
-                    endTime: '10'
+                    endTime: '10',
+                    status: vm.status.completed
                 },
                 {
                     name: 'Replacement',
                     startTime: '7',
-                    endTime: '8:30'
+                    endTime: '8:30',
+                    status: vm.status.pending
                 },
                 {
                     name: 'Replacement',
                     startTime: '11:30',
-                    endTime: '13:30'
+                    endTime: '13:30',
+                    status: vm.status.notstart
                 }];
         }
 

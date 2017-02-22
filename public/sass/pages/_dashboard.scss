@@ -19,11 +19,11 @@
 
 .row-time {
   .border-time {
-    border-left: 1px #000000 solid;
-    border-bottom: 1px #000000 solid;
+    border-left: 1px #dedede solid;
+    border-bottom: 2px #dedede solid;
   }
   .border-time:last-child {
-    border-right: 1px #000000 solid;
+    border-right: 1px #dedede solid;
   }
 }
 
@@ -32,14 +32,14 @@
 
   width: 100% /($number-of-hour + 2);
   float: left;
-  border-bottom: 1px #000000 solid;
+  border-bottom: 2px #dedede solid;
   button {
     min-width: 40px;
   }
 }
 
 .button-time-next {
-  border-left: 1px #000000 solid;
+  border-left: 1px #dedede solid;
 }
 
 .min-height-range-time {
@@ -53,7 +53,7 @@
 }
 
 .row-job {
-  border: 1px #000000 solid;
+  border-bottom: 1px #dedede solid;
   height: 80px;
   padding: 10px 0;
 }
@@ -66,14 +66,17 @@
 
 .job-cell {
   float: left;
-  background-color: #00b3ee;
   overflow: hidden;
   text-overflow: ellipsis;
   height: 100%;
+  border-radius: 4px;
+  padding-left: 10px;
+  padding-top: 5px;
 }
 
 .driver-text {
   float: left;
+  font-size: 13px;
   width: 100% /($number-of-hour + 2);
   line-height: 60px;
   padding-left: 10px;
@@ -84,7 +87,7 @@
 
 .today-job {
   background-color: white;
-  margin: 10px 0px 0px;
+  margin: 10px 0 0;
   border: 1px solid #ddd;
 }
 
@@ -109,3 +112,51 @@
 }
 
 .angular-google-map-container { height: 400px; }
+
+.date-control-button {
+  color: $main-color;
+  cursor: pointer;
+}
+
+.date-control {
+  font-size: 18px;
+}
+
+.display-mode-button button {
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
+.completed-item {
+  background-color: $completed-color;
+  color: white;
+}
+
+.pending-item {
+  background-color: $pending-color;
+  color: white;
+}
+
+.not-start-item {
+  background-color: $not-start-color;
+  color: white;
+}
+
+.completed-text {
+  color: $completed-color;
+}
+
+.pending-text {
+  color: $pending-color;
+}
+
+.not-start-text {
+  color: $not-start-color;
+}
+
+.text-item {
+  font-size: 12px;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}

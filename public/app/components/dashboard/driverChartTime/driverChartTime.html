@@ -1,7 +1,12 @@
 <div class="row-job" style="position: relative">
-    <div class="driver-text"><span>Driver A</span></div>
-    <div class="job-cell" ng-repeat="job in vm.jobs" ng-style="job.style" ng-if="job.isDisplay" title="{{job.name}}" ng-drop="true" ng-drop-success="vm.onDropComplete($data,$event)">{{job.name}}</div>
+    <div class="driver-text completed-text"><span>Driver A</span></div>
+    <div class="job-cell" ng-repeat="job in vm.jobs"
+         ng-class="{'completed-item': job.status === vm.status.completed, 'pending-item': job.status === vm.status.pending, 'not-start-item': job.status === vm.status.notstart}"
+         ng-style="job.style" ng-if="job.isDisplay" title="{{job.name}}"
+         ng-drop="true" ng-drop-success="vm.onDropComplete($data,$event)">
+        <p class="text-item">{{job.name}}</p>
+    </div>
     <div style="position: absolute; width: 10%; left: 50%; bottom: 0; z-index: 100">
-        <div style="width: 50%; border-right:2px solid orange; height: 80px"></div>
+        <div style="width: 50%; border-right:1px solid orange; height: 80px"></div>
     </div>
 </div>

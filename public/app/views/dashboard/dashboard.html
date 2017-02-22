@@ -1,5 +1,7 @@
 <div class="row">
     <div class="left-side col-xs-9">
+        <date-control></date-control>
+        <filter-dashboard></filter-dashboard>
         <time-control start-time="vm.startTime" size-hour="vm.sizeHour"></time-control>
         <driver-chart-time start-time="vm.startTime" size-hour="vm.sizeHour"></driver-chart-time>
         <driver-chart-time start-time="vm.startTime" size-hour="vm.sizeHour"></driver-chart-time>
@@ -10,21 +12,7 @@
     <div class="right-side col-xs-3">
         <uib-tabset>
             <uib-tab heading="TODAY'S JOBS ({{1}})">
-                <div class="row">
-                    <div class="col-xs-12" ng-repeat="job in vm.todayJobs" ng-drag="true" ng-drag-data="{job}" ng-drag-success="vm.onDragComplete($data,$event)" ng-center-anchor="true">
-                        <div class="row today-job">
-                            <div class="col-xs-9">
-                                <label>{{::job.type}}</label>
-                                <p>Send to: <span>{{job.sendTo}}</span></p>
-                                <a href="#">View on map</a>
-                                <p>Movement Vouchers: <span>{{job.movementVoucher}}</span></p>
-                            </div>
-                            <div class="col-xs-3">
-                                <a href="#">Detail</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <job-tab></job-tab>
             </uib-tab>
             <uib-tab heading="TASKS ({{8}})">Tab 2 content</uib-tab>
         </uib-tabset>
