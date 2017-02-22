@@ -85,10 +85,24 @@
   }
 }
 
-.today-job {
+.job-item {
+  font-size: 12px;
   background-color: white;
-  margin: 10px 0 0;
+  margin: 0;
   border: 1px solid #ddd;
+  padding: 11px 0;
+  a {
+    color: $main-color;
+  }
+  .col-xs-12 {
+    margin-top: 10px;
+    p {
+      margin-bottom: 5px;
+    }
+    .voucher-movement {
+      margin-top: 15px;
+    }
+  }
 }
 
 [ng-drag]{
@@ -159,4 +173,10 @@
   font-stretch: normal;
   line-height: normal;
   letter-spacing: normal;
+}
+
+.jobTab {
+  > .col-xs-12 {
+    margin-top: 15px;
+  }
 }

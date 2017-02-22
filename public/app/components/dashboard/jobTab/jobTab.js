@@ -17,21 +17,36 @@
         var vm = this;
 
         vm.$onInit = function() {
+            vm.status = {
+                completed: 'completed',
+                pending: 'pending',
+                notstart: 'notstart'
+            };
+
             vm.todayJobs = [
                 {
-                    type: 'Replacement',
-                    sendTo: '120 Ubi Ave 3, Singapore 6623463',
-                    movementVoucher: 3
+                    id: '123',
+                    plateNo: '',
+                    address: '20 Ubi Avenue 4, Singapore',
+                    title: 'Test Driver',
+                    status: vm.status.notstart,
+                    driver: ''
                 },
                 {
-                    type: 'Test Drive',
-                    sendTo: '120 Ubi Ave 3, Singapore 6623463',
-                    movementVoucher: 3
+                    id: '633',
+                    plateNo: 'SGR 1451 SDG 6496',
+                    address: 'Ethoz Group Ltd., Tampines Street 92, Singapore',
+                    title: 'Replacement',
+                    status: vm.status.pending,
+                    driver: 'Razif'
                 },
                 {
-                    type: 'Replacement',
-                    sendTo: '120 Ubi Ave 3, Singapore 6623463',
-                    movementVoucher: 3
+                    id: '633',
+                    plateNo: 'SGR 1451 SDG 6496',
+                    address: 'Ethoz Group Ltd., Tampines Street 92, Singapore',
+                    title: 'Replacement',
+                    status: vm.status.pending,
+                    driver: 'Meng'
                 }
             ];
         };

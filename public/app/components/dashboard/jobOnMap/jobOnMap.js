@@ -20,16 +20,33 @@
                 vm.map = map;
             });
 
+            vm.status = {
+                completed: 'completed',
+                pending: 'pending',
+                notstart: 'notstart'
+            };
+
             vm.jobs = [
                 {
                     id: '123',
+                    plateNo: '',
                     address: '20 Ubi Avenue 4, Singapore',
-                    title: 'Marker 1'
+                    title: 'Test Driver',
+                    status: vm.status.notstart
                 },
                 {
                     id: '633',
+                    plateNo: 'SGR 1451 SDG 6496',
                     address: 'Ethoz Group Ltd., Tampines Street 92, Singapore',
-                    title: 'Marker 2'
+                    title: 'Replacement',
+                    status: vm.status.pending
+                },
+                {
+                    id: '633',
+                    plateNo: 'SGR 1451 SDG 6496',
+                    address: 'Ethoz Group Ltd., Tampines Street 92, Singapore',
+                    title: 'Replacement',
+                    status: vm.status.pending
                 }
             ];
         };
