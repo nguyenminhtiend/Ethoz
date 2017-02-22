@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-xs-12">
+        <select class="form-control">
+            <option>All Tasks</option>
+        </select>
+    </div>
+    <div class="col-xs-12">
+        <div class="inner-addon right-addon"><i class="fa fa-search"></i><input type="text"
+                                                                                 class="form-control search-text"
+                                                                                 placeholder="Search"></div>
+    </div>
+    <div class="col-xs-12" ng-repeat="job in vm.todayJobs" ng-drag="true" ng-drag-data="{job}"
+         ng-drag-success="vm.onDragComplete($data,$event)" ng-center-anchor="true">
+        <div class="row today-job">
+            <div class="col-xs-9">
+                <label>{{::job.type}}</label>
+                <p>Send to: <span>{{job.sendTo}}</span></p>
+                <a href="#">View on map</a>
+                <p>Movement Vouchers: <span>{{job.movementVoucher}}</span></p>
+            </div>
+            <div class="col-xs-3">
+                <a href="#">Detail</a>
+            </div>
+        </div>
+    </div>
+</div>
