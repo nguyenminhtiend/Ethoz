@@ -19,77 +19,101 @@
         vm.status = {
             completed: 'completed',
             pending: 'pending',
-            notstart: 'notstart'
+            unassign: 'unassign'
         };
-        vm.onDropComplete = function (data, event) {
-            alert('Drop done: ' + data);
+        vm.onDropComplete = function (data, event, drap) {
+            var job = angular.copy(data.job);
+            var startTime = drap.hour + ':' + drap.minute;
+            var endTime = drap.hour + 1 + ':' + drap.minute;
+            job.startTime = startTime;
+            job.endTime = endTime;
+            vm.jobs.push(job);
+            convertJobToRender();
         };
-
-        $scope.$watch("vm.startTime", convertJobToRender);
 
         vm.$onInit = function () {
             initJob();
+            initCurrentTime();
             convertJobToRender();
+            initTimeForDrap();
+            $scope.$watch("vm.startTime", onTimeChange);
         };
 
         function initJob() {
             vm.jobs = [
                 {
-                    name: 'Replacement',
+                    title: 'Replacement',
                     startTime: '9',
                     endTime: '10',
                     status: vm.status.completed
                 },
                 {
-                    name: 'Replacement',
+                    title: 'Replacement',
                     startTime: '7',
                     endTime: '8:30',
                     status: vm.status.pending
                 },
                 {
-                    name: 'Replacement',
+                    title: 'Replacement',
                     startTime: '11:30',
                     endTime: '13:30',
-                    status: vm.status.notstart
+                    status: vm.status.unassign
                 }];
+        }
+
+        function initTimeForDrap() {
+            vm.draps = [];
+            var hour = vm.startTime;
+            var minute = 0;
+            var indexLeft = 2;
+            for (var i = hour; i < (vm.startTime + vm.sizeHour); i++) {
+                vm.draps.push({
+                    style: {
+                        'left': 12.5 * indexLeft / 2 + '%'
+                    },
+                    hour: i,
+                    minute: minute
+                });
+                indexLeft ++;
+                if (minute == 0) {
+                    i--;
+                    minute = 30;
+                    continue;
+                }
+                if (minute == 30) {
+                    minute = 0;
+                }
+
+            }
+        }
+
+        function initCurrentTime() {
+            vm.isShowCurrentTime = timeService.isShowCurrentTime(vm.startTime, vm.sizeHour);
+            if (vm.isShowCurrentTime) {
+                var left = timeService.getPercentageFromDistance(vm.startTime, timeService.getCurrentTime(), vm.startTime, vm.sizeHour) + 12.5;
+                vm.currentTimeStyles = {
+                    'left': left - 4 + '%'
+                };
+            }
+        }
+
+        function onTimeChange() {
+            initCurrentTime();
+            convertJobToRender();
         }
 
         function convertJobToRender() {
             vm.jobs = timeService.sortByStartTime(vm.jobs);
 
             var currentPosition = vm.startTime.toString();
-            for(var i = 0; i < vm.jobs.length; i++) {
-                var distance = getPercentageFromDistance(vm.jobs[i].startTime, vm.jobs[i].endTime);
+            for (var i = 0; i < vm.jobs.length; i++) {
+                var distance = timeService.getPercentageFromDistance(vm.jobs[i].startTime, vm.jobs[i].endTime, vm.startTime, vm.sizeHour);
                 vm.jobs[i].style = {
                     'width': distance + '%',
-                    'margin-left': getPercentageFromDistance(currentPosition, vm.jobs[i].startTime) + '%'
+                    'left': timeService.getPercentageFromDistance(vm.startTime, vm.jobs[i].startTime, vm.startTime, vm.sizeHour) + 12.5 + '%'
                 };
                 vm.jobs[i].isDisplay = distance !== 0;
-                currentPosition = vm.jobs[i].endTime;
             }
-        }
-
-        function getPercentageFromDistance(start, end) {
-            var startTime = timeService.getTimeObject(start);
-            var endTime = timeService.getTimeObject(end);
-            var rangeMinute = getTotalMinute(endTime) - getTotalMinute(startTime);
-            return (12.5 * rangeMinute) / 60;
-        }
-
-
-        function getTotalMinute(time) {
-            var hour = time.hour;
-            var minute = time.minute;
-
-            if(hour < vm.startTime) {
-                hour = vm.startTime;
-                minute = 0;
-            }
-            if(hour > (vm.startTime + vm.sizeHour) || (hour === (vm.startTime + vm.sizeHour) && minute > 0) ) {
-                hour = vm.startTime + vm.sizeHour;
-                minute = 0;
-            }
-            return hour * 60 + minute;
         }
     }
 })();

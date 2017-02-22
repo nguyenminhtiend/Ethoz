@@ -16,11 +16,14 @@
     function JobTabController() {
         var vm = this;
 
+        vm.onDragComplete = function($data,$event, $index) {
+            vm.todayJobs.splice($index, 1);
+        };
         vm.$onInit = function() {
             vm.status = {
                 completed: 'completed',
                 pending: 'pending',
-                notstart: 'notstart'
+                unassign: 'unassign'
             };
 
             vm.todayJobs = [
@@ -29,7 +32,7 @@
                     plateNo: '',
                     address: '20 Ubi Avenue 4, Singapore',
                     title: 'Test Driver',
-                    status: vm.status.notstart,
+                    status: vm.status.unassign,
                     driver: ''
                 },
                 {
@@ -41,11 +44,11 @@
                     driver: 'Razif'
                 },
                 {
-                    id: '633',
+                    id: '3734',
                     plateNo: 'SGR 1451 SDG 6496',
                     address: 'Ethoz Group Ltd., Tampines Street 92, Singapore',
                     title: 'Replacement',
-                    status: vm.status.pending,
+                    status: vm.status.completed,
                     driver: 'Meng'
                 }
             ];

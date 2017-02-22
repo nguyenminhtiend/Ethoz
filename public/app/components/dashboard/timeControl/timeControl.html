@@ -2,11 +2,11 @@
     <div class="row-time" style="position: relative">
         <div class="range-time">&nbsp</div>
         <div ng-repeat="range in vm.textHours" class="range-time center-text-hour"><span>{{range}}</span></div>
-        <div style="position: absolute; width: 10%; border:1px solid orange; left: 50%; border-radius: 4px">
-            <div style="text-align: center"><label style="color: orange">4:40 PM</label></div>
+        <div ng-if="vm.isShowCurrentTime" class="current-time-label" ng-style="vm.currentTimeStyles">
+            <div><label>{{vm.timeText}}</label></div>
         </div>
-        <div style="position: absolute; width: 10%; left: 50%; top: 27px">
-            <div style="width: 50%; border-right:1px solid orange; height: 18px"></div>
+        <div ng-if="vm.isShowCurrentTime" class="current-time-vertial-top" ng-style="vm.currentTimeStyles">
+            <div></div>
         </div>
     </div>
     <div class="row-time min-height-range-time">

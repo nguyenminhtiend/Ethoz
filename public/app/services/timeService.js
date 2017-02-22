@@ -8,12 +8,48 @@
 
 
     function timeService($filter) {
+        var CELL_PERCENTAGE = 100 / 8;
         var service = {
             sortByStartTime: sortByStartTime,
             getTimeObject: getTimeObject,
-            getCurrentTimeObject: getCurrentTimeObject
+            getCurrentTime: getCurrentTime,
+            getPercentageFromDistance: getPercentageFromDistance,
+            isShowCurrentTime: isShowCurrentTime,
+            getCurrentTimeText: getCurrentTimeText
         };
         return service;
+
+        function isShowCurrentTime(startTime, sizeHour) {
+            var currentTime =  new Date();
+            var hour = currentTime.getHours();
+            var minute = currentTime.getMinutes();
+            if(hour < startTime || hour > (startTime + sizeHour) || (hour === (startTime + sizeHour) && minute > 0)) {
+                return false;
+            }
+            return true;
+        }
+
+        function getPercentageFromDistance(start, end, startTime, sizeHour) {
+            var startTimeObject = getTimeObject(start.toString());
+            var endTimeObject = getTimeObject(end);
+            var rangeMinute = getTotalMinute(endTimeObject, startTime, sizeHour) - getTotalMinute(startTimeObject, startTime, sizeHour);
+            return (CELL_PERCENTAGE * rangeMinute) / 60;
+        }
+
+        function getTotalMinute(time, startTime, sizeHour) {
+            var hour = time.hour;
+            var minute = time.minute;
+
+            if(hour < startTime) {
+                hour = startTime;
+                minute = 0;
+            }
+            if(hour > (startTime + sizeHour) || (hour === (startTime + sizeHour) && minute > 0) ) {
+                hour = startTime + sizeHour;
+                minute = 0;
+            }
+            return hour * 60 + minute;
+        }
 
         function sortByStartTime(jobs) {
             return $filter('orderBy')(jobs,
@@ -32,12 +68,13 @@
             return object;
         }
 
-        function getCurrentTimeObject() {
+        function getCurrentTime() {
             var date = new Date();
-            return {
-                hour: date.getHours(),
-                minute: date.getMinutes()
-            };
+            return date.getHours() + ':' + date.getMinutes();
+        }
+
+        function getCurrentTimeText() {
+            return $filter('date')(new Date(), 'h:mma');
         }
 
         function timeComparator(time1, time2) {

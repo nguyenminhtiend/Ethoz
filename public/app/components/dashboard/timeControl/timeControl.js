@@ -13,34 +13,46 @@
 
         });
 
-    TimeControlController.$inject = [];
-    function TimeControlController() {
+    TimeControlController.$inject = ['timeService'];
+    function TimeControlController(timeService) {
         var vm = this;
         vm.next = next;
         vm.back = back;
 
-        vm.$onInit = function() {
+        vm.$onInit = function () {
             initTimeControl();
+            initCurrentTime();
         };
+
+        function initCurrentTime() {
+            vm.isShowCurrentTime = timeService.isShowCurrentTime(vm.startTime, vm.sizeHour);
+            if(vm.isShowCurrentTime) {
+                var left = timeService.getPercentageFromDistance(vm.startTime, timeService.getCurrentTime(), vm.startTime, vm.sizeHour) + 12.5;
+                vm.currentTimeStyles = {
+                    'left': left - 4 + '%'
+                };
+                vm.timeText = timeService.getCurrentTimeText();
+            }
+        }
 
         function initTimeControl() {
             vm.ranges = [];
             vm.textHours = [];
-            for(var i = 0; i <  vm.sizeHour; i++) {
+            for (var i = 0; i < vm.sizeHour; i++) {
                 vm.ranges.push(i + vm.startTime);
                 vm.textHours.push(i + vm.startTime);
             }
             vm.textHours.push(vm.startTime + vm.sizeHour);
         }
 
-        function next (){
+        function next() {
             vm.startTime += 1;
-            initTimeControl();
+            vm.$onInit();
         }
 
-        function back (){
+        function back() {
             vm.startTime -= 1;
-            initTimeControl();
+            vm.$onInit();
         }
     }
 })();
