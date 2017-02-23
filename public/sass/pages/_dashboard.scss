@@ -256,3 +256,36 @@
   height: 100%;
   top: 0;
 }
+
+.job-detail-popover {
+  font-family: 'Montserrat' !important;
+  font-size: 12px;
+  h5 {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  p {
+    margin-bottom: 5px;
+  }
+  label {
+    margin-top: 10px;
+  }
+  .task-in-job {
+    margin-bottom: 10px;
+    .cirle-status {
+      width: 10%;
+      float: left;
+    }
+    .cirle-status.task-complete {
+      color: $completed-color;
+    }
+    .cirle-status.task-pending {
+      color: $pending-color;
+    }
+    .task-in-job-detail {
+      width: 90%;
+      float: left;
+      margin-bottom: 10px;
+    }
+  }
+}

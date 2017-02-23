@@ -16,7 +16,7 @@ var minifyHTML = require('gulp-minify-html');
 
 gulp.task('connect', function () {
     return connect.server({
-        port: 9999,
+        port: 8888,
         root: ['./', 'public'],
         livereload: true
     });
@@ -24,7 +24,7 @@ gulp.task('connect', function () {
 
 gulp.task('connect-prod', function () {
     return connect.server({
-        port: 6789,
+        port: 9999,
         root: ['dist'],
         livereload: true
     });
