@@ -21,13 +21,22 @@
             pending: 'pending',
             unassign: 'unassign'
         };
+
         vm.onDropComplete = function (data, event, drap) {
-            var job = angular.copy(data.job);
+            if(!data){
+                return;
+            }
+            var job = angular.copy(data);
             var startTime = drap.hour + ':' + drap.minute;
             var endTime = drap.hour + 1 + ':' + drap.minute;
             job.startTime = startTime;
             job.endTime = endTime;
             vm.jobs.push(job);
+            convertJobToRender();
+        };
+
+        vm.onDragComplete = function (index) {
+            vm.jobs.splice(index, 1);
             convertJobToRender();
         };
 
@@ -74,7 +83,7 @@
                     hour: i,
                     minute: minute
                 });
-                indexLeft ++;
+                indexLeft++;
                 if (minute == 0) {
                     i--;
                     minute = 30;

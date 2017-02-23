@@ -1,11 +1,8 @@
-<div class="row-job" style="position: relative">
-    <div ng-repeat="drap in vm.draps" class="drap-time" ng-style="drap.style" ng-drop="true" ng-drop-success="vm.onDropComplete($data,$event, drap)"></div>
+<div class="row-job">
+    <div ng-repeat="drap in vm.draps" class="drap-time" ng-style="drap.style" ng-drop="true"
+         ng-drop-success="vm.onDropComplete($data,$event, drap)"></div>
     <div class="driver-text completed-text"><span>Driver A</span></div>
-    <div class="job-cell" ng-repeat="job in vm.jobs"
-         ng-class="{'completed-item': job.status === vm.status.completed, 'pending-item': job.status === vm.status.pending, 'not-start-item': job.status === vm.status.unassign}"
-         ng-style="job.style" ng-if="job.isDisplay" title="{{job.title}}">
-        <p class="text-item">{{job.title}}</p>
-    </div>
+    <job-cell ng-repeat="job in vm.jobs" job="job" drag-complete="vm.onDragComplete($index)"></job-cell>
     <div ng-if="vm.isShowCurrentTime" class="current-time-vertial" ng-style="vm.currentTimeStyles">
         <div></div>
     </div>

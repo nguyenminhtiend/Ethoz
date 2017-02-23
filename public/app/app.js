@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('main.module', ['ngRoute', 'ui.bootstrap', 'ngMap', 'ngDraggable', 'dashboard.module'])
+    angular.module('main.module', ['ngRoute', 'ui.bootstrap', 'ngMap', 'ngDraggable', 'ui.bootstrap.contextMenu', 'dashboard.module'])
         //.config(compileConfig)
         //.config(httpConfig)
         .config(routeConfig)

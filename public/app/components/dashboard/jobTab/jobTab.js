@@ -19,6 +19,7 @@
         vm.onDragComplete = function($data,$event, $index) {
             vm.todayJobs.splice($index, 1);
         };
+
         vm.$onInit = function() {
             vm.status = {
                 completed: 'completed',

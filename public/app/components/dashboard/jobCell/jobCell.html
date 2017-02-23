@@ -1,0 +1,18 @@
+<div class="job-cell" ng-drag="true" ng-drag-data="vm.job" context-menu="vm.menuOptions"
+     model="vm.job" ng-click="alert('twet')"
+     ng-drag-success="vm.onDragComplete($data, $event)" ng-center-anchor="true"
+     ng-class="{'completed-item': vm.job.status === vm.status.completed, 'pending-item': vm.job.status === vm.status.pending, 'not-start-item': vm.job.status === vm.status.unassign}"
+     ng-style="vm.job.style" ng-if="vm.job.isDisplay"
+     uib-popover-template="vm.dynamicPopover.templateUrl"
+     popover-is-open="vm.popoverIsOpen" popover-placement="{{'bottom'}}">
+    <p class="text-item">{{vm.job.title}}</p>
+</div>
+
+<script type="text/ng-template" id="myPopoverTemplate.html">
+    <i class="fa fa-times pull-right click-able" ng-click="vm.popoverIsOpen = false"></i>
+    <div>{{vm.dynamicPopover.content}}</div>
+    <div class="form-group">
+        <label>Popup Title:</label>
+        <input type="text" ng-model="vm.dynamicPopover.title" class="form-control">
+    </div>
+</script>

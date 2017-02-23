@@ -54,6 +54,7 @@
 .row-job {
   border-bottom: 1px #dedede solid;
   height: 80px;
+  position: relative;
 }
 
 .row-job:before, .row-job:after {
@@ -253,4 +254,5 @@
   position: absolute;
   width: 100% /($number-of-hour + 2) / 2;;
   height: 100%;
+  top: 0;
 }
