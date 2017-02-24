@@ -1,10 +1,11 @@
-<div class="job-cell" ng-drag="true" ng-drag-data="vm.job" context-menu="vm.menuOptions"
-     model="vm.job" ng-click="alert('twet')"
-     ng-drag-success="vm.onDragComplete($data, $event)" ng-center-anchor="true"
+<div class="job-cell" ng-drag="vm.job.status !== vm.status.completed" ng-drag-data="vm.job"
+     context-menu="vm.menuOptions" ng-drop="vm.isTaskActive" model="vm.job"
+     ng-center-anchor="false"
      ng-class="{'completed-item': vm.job.status === vm.status.completed, 'pending-item': vm.job.status === vm.status.pending, 'not-start-item': vm.job.status === vm.status.unassign}"
      ng-style="vm.job.style" ng-if="vm.job.isDisplay"
      uib-popover-template="vm.dynamicPopover.templateUrl"
-     popover-is-open="vm.popoverIsOpen" popover-placement="{{'bottom'}}">
+     popover-trigger="'outsideClick'"
+     popover-placement="{{'bottom'}}">
     <p class="text-item">{{vm.job.title}}</p>
 </div>
 

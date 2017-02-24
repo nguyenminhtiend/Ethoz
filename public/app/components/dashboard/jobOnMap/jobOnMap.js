@@ -40,15 +40,17 @@
                     address: 'Ethoz Group Ltd., Tampines Street 92, Singapore',
                     title: 'Replacement',
                     status: vm.status.pending
-                },
-                {
-                    id: '633',
-                    plateNo: 'SGR 1451 SDG 6496',
-                    address: 'Ethoz Group Ltd., Tampines Street 92, Singapore',
-                    title: 'Replacement',
-                    status: vm.status.pending
                 }
             ];
+        };
+
+        vm.placeChanged = function() {
+            vm.place = this.getPlace();
+            vm.map.setCenter(vm.place.geometry.location);
+        }
+
+        vm.click = function () {
+            alert('6236236');
         };
 
         function showDetail(e, job) {

@@ -105,6 +105,25 @@
   }
 }
 
+.task-item {
+  font-size: 12px;
+  background-color: white;
+  margin: 0;
+  border-radius: 4px;
+  padding: 11px 0;
+  a {
+    color: $main-color;
+  }
+  .col-xs-12 {
+    p {
+      margin-bottom: 5px;
+    }
+    p:last-child {
+      margin-bottom: 15px;
+    }
+  }
+}
+
 [ng-drag] {
   -moz-user-select: -moz-none;
   -khtml-user-select: none;
@@ -260,9 +279,16 @@
 .job-detail-popover {
   font-family: 'Montserrat' !important;
   font-size: 12px;
+  > i.fa-times {
+    position: absolute;
+    top: -17px;
+    right: 7px;
+    color: $main-color;
+  }
   h5 {
     text-transform: uppercase;
     font-weight: bold;
+    margin-top: 22px;
   }
   p {
     margin-bottom: 5px;
@@ -287,5 +313,34 @@
       float: left;
       margin-bottom: 10px;
     }
+  }
+}
+
+.tab-header {
+  text-align: center;
+  .tab-item {
+    cursor: pointer;
+    padding: 10px 0;
+    float: left;
+    width: 50%;
+    background-color: $background-color-right-side;
+    border-radius: 4px;
+    label {
+      margin-bottom: 0;
+    }
+  }
+  .tab-item.active {
+    background-color: white;
+    cursor: default;
+  }
+}
+
+.tab-content {
+  padding: 10px 15px;
+  .form-control {
+    border: solid 1px #cfdff2;
+  }
+  .btn-action {
+    width: 100%;
   }
 }

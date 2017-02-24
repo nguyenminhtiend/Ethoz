@@ -5,7 +5,7 @@
         .component('jobCell', {
             bindings: {
                 job: '=',
-                dragComplete: '&'
+                isTaskActive: '<'
             },
             templateUrl: 'app/components/dashboard/jobCell/jobCell.html',
             controller: JobCellController,
@@ -13,8 +13,8 @@
 
         });
 
-    JobCellController.$inject = [];
-    function JobCellController() {
+    JobCellController.$inject = ['$rootScope'];
+    function JobCellController($rootScope) {
         var vm = this;
         vm.status = {
             completed: 'completed',
@@ -22,16 +22,8 @@
             unassign: 'unassign'
         };
 
-        vm.onDragComplete = function ($data, $event) {
-            vm.dragComplete();
-        };
-
         vm.$onInit = function() {
             vm.menuOptions = [
-                ['View detail', function ($itemScope, $event, modelValue, text, $li) {
-                    vm.popoverIsOpen = true;
-                }],
-                null, // Dividier
                 ['Set duration', function ($itemScope, $event, modelValue, text, $li) {
                     alert('Set duration');
                 }],

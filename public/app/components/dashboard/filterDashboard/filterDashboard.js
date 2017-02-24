@@ -4,7 +4,7 @@
     angular.module('main.module')
         .component('filterDashboard', {
             bindings: {
-
+                calendarViewMode: '='
             },
             templateUrl: 'app/components/dashboard/filterDashboard/filterDashboard.html',
             controller: FilterDashboardController,

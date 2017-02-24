@@ -66,3 +66,13 @@ body {
 .click-able {
   cursor: pointer;
 }
+
+.btn-action {
+  background-color: $main-color;
+  color: white;
+  font-size: 12px;
+}
+
+.btn-action:hover, .btn-action:active, .btn-action:focus {
+  color: white;
+}

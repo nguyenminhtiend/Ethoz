@@ -1,4 +1,6 @@
-<ng-map zoom="14" center="{{'Singpapore'}}" style="height: 600px">
+<ng-map map-type-control="false" street-view-control="false" zoom="14" center="{{'Singpapore'}}"
+        zoom-control-options='{style:"small"}'
+        style="height: 600px">
     <marker id='{{job.id}}' position="{{job.address}}" ng-repeat="job in vm.jobs"
             on-click="vm.showDetail(job)"></marker>
     <info-window id="job-info">
@@ -7,4 +9,11 @@
             title: {{vm.currentJob.title}}
         </div>
     </info-window>
+    <custom-control id="home" position="TOP_RIGHT" index="1">
+        <input places-auto-complete size=80 class="form-control"
+               ng-model="vm.address"
+               component-restrictions="{country:'sg'}"
+               types="{{'address'}}"
+               on-place-changed="vm.placeChanged()" /> <br/>
+    </custom-control>
 </ng-map>

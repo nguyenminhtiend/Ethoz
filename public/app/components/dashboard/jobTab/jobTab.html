@@ -1,7 +1,7 @@
 <div class="row jobTab">
     <div class="col-xs-12">
         <select class="form-control">
-            <option>All Tasks</option>
+            <option>All Jobs</option>
         </select>
     </div>
     <div class="col-xs-12">
@@ -9,7 +9,7 @@
                                                                                 class="form-control search-text"
                                                                                 placeholder="Search"></div>
     </div>
-    <div class="col-xs-12" ng-repeat="job in vm.todayJobs" ng-drag="true" ng-drag-data="{job}"
+    <div class="col-xs-12" ng-repeat="job in vm.todayJobs" ng-drag="true" ng-drag-data="job"
          ng-drag-success="vm.onDragComplete($data,$event, $index)" ng-center-anchor="true">
         <div class="row job-item"
              ng-class="{'job-unassign': job.status === vm.status.unassign, 'job-pending': job.status === vm.status.pending,'job-completed': job.status === vm.status.completed}">
@@ -24,7 +24,7 @@
                 <p>Send to: {{job.address}}</p>
                 <a href="#"><i class="fa fa-map-marker fa-fw"></i>View on map</a>
                 <p class="voucher-movement">Movement Vouchers: 2</p>
-                <label class="driver-job">{{job.driver || 'Unassign'}}</label>
+                <label class="driver-job">{{job.driver || 'Unassigned'}}</label>
             </div>
         </div>
     </div>

@@ -1,0 +1,31 @@
+<div class="row jobTab">
+    <div class="col-xs-12">
+        <select class="form-control">
+            <option>All Tasks</option>
+        </select>
+    </div>
+    <div class="col-xs-12">
+        <div class="inner-addon right-addon"><i class="fa fa-search"></i><input type="text"
+                                                                                class="form-control search-text"
+                                                                                placeholder="Search"></div>
+    </div>
+    <div class="col-xs-12" ng-repeat="task in vm.tasks" ng-drag="true" ng-drag-data="{task}"
+         ng-drag-success="vm.onDragComplete($data,$event, $index)" ng-center-anchor="true">
+        <div class="row task-item"
+             ng-class="{'job-unassign': task.status === vm.status.unassign, 'job-pending': task.status === vm.status.pending,'job-completed': task.status === vm.status.completed}">
+            <div class="col-xs-12">
+                <p>Req no: {{task.requestNo}}</p>
+                <p>Send to: {{task.description}}</p>
+            </div>
+            <div class="col-xs-9">
+                <label class="driver-job">{{task.driver || 'Unassigned'}}</label>
+            </div>
+            <div class="col-xs-3">
+                <a href="#">Edit</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <button class="btn btn-action"><i class="fa fa-plus fa-fw"></i>Add New Task</button>
+    </div>
+</div>

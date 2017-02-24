@@ -5,7 +5,8 @@
         .component('timeControl', {
             bindings: {
                 startTime: '=',
-                sizeHour: '<'
+                sizeHour: '<',
+                timeChange: '&'
             },
             templateUrl: 'app/components/dashboard/timeControl/timeControl.html',
             controller: TimeControlController,
@@ -48,11 +49,13 @@
         function next() {
             vm.startTime += 1;
             vm.$onInit();
+            vm.timeChange();
         }
 
         function back() {
             vm.startTime -= 1;
             vm.$onInit();
+            vm.timeChange();
         }
     }
 })();

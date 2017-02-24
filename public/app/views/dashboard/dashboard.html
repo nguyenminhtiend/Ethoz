@@ -1,20 +1,30 @@
 <div class="row">
     <div class="left-side col-xs-9">
         <date-control></date-control>
-        <filter-dashboard></filter-dashboard>
-        <time-control start-time="vm.startTime" size-hour="vm.sizeHour"></time-control>
-        <driver-chart-time start-time="vm.startTime" size-hour="vm.sizeHour"></driver-chart-time>
-        <driver-chart-time start-time="vm.startTime" size-hour="vm.sizeHour"></driver-chart-time>
-        <driver-chart-time start-time="vm.startTime" size-hour="vm.sizeHour"></driver-chart-time>
-        <driver-chart-time start-time="vm.startTime" size-hour="vm.sizeHour"></driver-chart-time>
-        <!--<job-on-map></job-on-map>-->
+        <filter-dashboard calendar-view-mode="vm.calendarViewMode"></filter-dashboard>
+        <div ng-if="vm.calendarViewMode">
+            <time-control start-time="vm.startTime" size-hour="vm.sizeHour"
+                          time-change="vm.timeChange()"></time-control>
+            <driver-chart-time start-time="vm.startTime" size-hour="vm.sizeHour" is-task-active="vm.isTaskActive"
+                               ng-repeat="driver in vm.drivers" driver="driver"
+                               re-assign-driver="vm.reAssignDriver(job, driverId)"></driver-chart-time>
+        </div>
+        <div ng-if="!vm.calendarViewMode">
+            <job-on-map></job-on-map>
+        </div>
     </div>
     <div class="right-side col-xs-3">
-        <uib-tabset>
-            <uib-tab heading="TODAY'S JOBS ({{1}})">
-                <job-tab></job-tab>
-            </uib-tab>
-            <uib-tab heading="TASKS ({{8}})">Tab 2 content</uib-tab>
-        </uib-tabset>
+        <div class="tab-header">
+            <div class="tab-item active" ng-click="vm.isTaskActive = false" ng-class="{'active': !vm.isTaskActive}">
+                <label>JOB(5)</label>
+            </div>
+            <div class="tab-item" ng-click="vm.isTaskActive = true" ng-class="{'active': vm.isTaskActive}">
+                <label>TASK(8)</label>
+            </div>
+        </div>
+        <div class="tab-content">
+            <job-tab ng-if="!vm.isTaskActive"></job-tab>
+            <task-tab ng-if="vm.isTaskActive"></task-tab>
+        </div>
     </div>
 </div>

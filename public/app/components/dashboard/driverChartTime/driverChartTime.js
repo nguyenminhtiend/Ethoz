@@ -4,8 +4,11 @@
     angular.module('main.module')
         .component('driverChartTime', {
             bindings: {
+                driver: '=',
                 startTime: '=',
-                sizeHour: '<'
+                sizeHour: '<',
+                isTaskActive: '<',
+                reAssignDriver: '&'
             },
             templateUrl: 'app/components/dashboard/driverChartTime/driverChartTime.html',
             controller: DriverChartTimeController,
@@ -13,16 +16,24 @@
 
         });
 
-    DriverChartTimeController.$inject = ['$scope', 'timeService'];
-    function DriverChartTimeController($scope, timeService) {
+    DriverChartTimeController.$inject = ['$scope', 'timeService', '$timeout'];
+    function DriverChartTimeController($scope, timeService, $timeout) {
         var vm = this;
+
+        vm.$onInit = function () {
+            initCurrentTime();
+            convertJobToRender();
+            initTimeForDrap();
+            $scope.$watch("vm.startTime", onTimeChange);
+        };
+
         vm.status = {
             completed: 'completed',
             pending: 'pending',
             unassign: 'unassign'
         };
 
-        vm.onDropComplete = function (data, event, drap) {
+        vm.onDropComplete = function (data, event, drap, driverId) {
             if(!data){
                 return;
             }
@@ -31,44 +42,20 @@
             var endTime = drap.hour + 1 + ':' + drap.minute;
             job.startTime = startTime;
             job.endTime = endTime;
-            vm.jobs.push(job);
-            convertJobToRender();
+            vm.reAssignDriver({job: job, driverId: driverId});
         };
 
-        vm.onDragComplete = function (index) {
-            vm.jobs.splice(index, 1);
-            convertJobToRender();
+        vm.drapComplete = function (jobId) {
+            for(var i = 0; i  < vm.driver.jobs.length; i++) {
+                if(vm.driver.jobs[i].id === jobId) {
+                    vm.driver.jobs.splice(i, 1);
+                    convertJobToRender();
+                    return;
+                }
+            }
         };
 
-        vm.$onInit = function () {
-            initJob();
-            initCurrentTime();
-            convertJobToRender();
-            initTimeForDrap();
-            $scope.$watch("vm.startTime", onTimeChange);
-        };
 
-        function initJob() {
-            vm.jobs = [
-                {
-                    title: 'Replacement',
-                    startTime: '9',
-                    endTime: '10',
-                    status: vm.status.completed
-                },
-                {
-                    title: 'Replacement',
-                    startTime: '7',
-                    endTime: '8:30',
-                    status: vm.status.pending
-                },
-                {
-                    title: 'Replacement',
-                    startTime: '11:30',
-                    endTime: '13:30',
-                    status: vm.status.unassign
-                }];
-        }
 
         function initTimeForDrap() {
             vm.draps = [];
@@ -112,16 +99,13 @@
         }
 
         function convertJobToRender() {
-            vm.jobs = timeService.sortByStartTime(vm.jobs);
-
-            var currentPosition = vm.startTime.toString();
-            for (var i = 0; i < vm.jobs.length; i++) {
-                var distance = timeService.getPercentageFromDistance(vm.jobs[i].startTime, vm.jobs[i].endTime, vm.startTime, vm.sizeHour);
-                vm.jobs[i].style = {
+            for (var i = 0; i < vm.driver.jobs.length; i++) {
+                var distance = timeService.getPercentageFromDistance(vm.driver.jobs[i].startTime, vm.driver.jobs[i].endTime, vm.startTime, vm.sizeHour);
+                vm.driver.jobs[i].style = {
                     'width': distance + '%',
-                    'left': timeService.getPercentageFromDistance(vm.startTime, vm.jobs[i].startTime, vm.startTime, vm.sizeHour) + 12.5 + '%'
+                    'left': timeService.getPercentageFromDistance(vm.startTime, vm.driver.jobs[i].startTime, vm.startTime, vm.sizeHour) + 12.5 + '%'
                 };
-                vm.jobs[i].isDisplay = distance !== 0;
+                vm.driver.jobs[i].isDisplay = distance !== 0;
             }
         }
     }
